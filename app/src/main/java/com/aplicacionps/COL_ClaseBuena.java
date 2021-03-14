@@ -15,6 +15,7 @@ public class COL_ClaseBuena extends AppCompatActivity {
     private ProgressBar ProgressBar;
     //Se crea otra variable para almacenar el valor que se pasa de un activity a otro
     private int PorcentajeActual;
+    //prueba
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
