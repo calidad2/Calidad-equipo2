@@ -1,1 +1,2 @@
-language: Java
+language: android
+dist: trusty
