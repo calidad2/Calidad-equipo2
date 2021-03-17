@@ -25,7 +25,7 @@ sonarqube {
     property "sonar.organization", "calidad2"
     property "sonar.host.url", "https://sonarcloud.io"
     property "sonar.login", "4180d8d43dfdebf44904c39a77eed5083e115d41"
-    property "sonar.branch.name", System.getenv('master')
+    property "sonar.branch.name", System.getenv('Develop1')
   }
 }
 allprojects {
