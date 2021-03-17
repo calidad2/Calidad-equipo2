@@ -60,7 +60,7 @@ task gitPull{
 	}
 }
 
-Task gitAdd{
+task gitAdd{
 	description "add all modified elements"
 	doLast{
 		exec{
