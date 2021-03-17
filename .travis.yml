@@ -1,5 +1,6 @@
 language: java
 
+
 sudo: required
 
 before_install:
@@ -7,3 +8,4 @@ before_install:
 
 script:
   - ./gradlew clean build -i --continue
+
