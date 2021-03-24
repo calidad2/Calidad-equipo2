@@ -1,5 +1,5 @@
 /*package com.aplicacionps;
-
+Clase comentada porque no funciona
 import junit.framework.TestCase;
 
 public class PantallaFinalTest extends TestCase {
