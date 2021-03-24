@@ -25,9 +25,9 @@ public class PantallaFinal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int porcentajeActual;
-        TextView mensaje;
-        TextView porciento;
+        int actualPercentage;
+        TextView message;
+        TextView percent;
         super.onCreate(savedInstanceState);
         //Relacionamos la clase PantallaFinal.java con su XML activity_pantallafinal.xml
         setContentView(R.layout.activity_pantallafinal);
@@ -37,39 +37,39 @@ public class PantallaFinal extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Se obtiene el porcentaje de la actividad anterior
         String dato = getIntent().getStringExtra("dato");
-        porcentajeActual = Integer.parseInt(dato);
+        actualPercentage = Integer.parseInt(dato);
         //Se relaciona el TextView "Porciento" con el del activity y muestra el porcentaje final obtenido
-        porciento = (TextView) findViewById(R.id.porciento);
-        porciento.setText("PORCENTAJE = " + dato);
+        percent = (TextView) findViewById(R.id.porciento);
+        percent.setText("PORCENTAJE = " + dato);
         //Se relaciona el TextView "Mensaje" con el del activity
-        mensaje = (TextView) findViewById(R.id.mensajeFinal);
+        message = (TextView) findViewById(R.id.mensajeFinal);
         //Se obtiene un numero aleatorio que dependiendo del porcentaje final hará que aparezca un
         //Mensaje diferente cada vez
-        int numAleatorio = (int) (Math.random() * 100);
+        int randomNum = (int) (Math.random() * 100);
 
         //Si el porcentaje final obtenido es 0 no se puede contagiar
-        if (porcentajeActual == 0) {
-            mensaje.setText("¡ENHORABUENA! No te has contagiado ya que tienes un 0 por ciento de probabilidades. Sigue así.");
+        if (actualPercentage == 0) {
+            message.setText("¡ENHORABUENA! No te has contagiado ya que tienes un 0 por ciento de probabilidades. Sigue así.");
             //Si el porcentaje final es 100 o mas se contagiará si o si
         }
         else {
             //Si el numero aleatorio obtenido es menor o igual que el porcentaje obtenido, se contagiará
-            if (numAleatorio <= porcentajeActual) {
+            if (randomNum <= actualPercentage) {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
-                if (porcentajeActual <= 30) {
-                    mensaje.setText("Mala suerte, te has contagiado. Incluso con poco porcentaje te puedes contagiar. Ten más cuidado la proxima vez");
+                if (actualPercentage <= 30) {
+                    message.setText("Mala suerte, te has contagiado. Incluso con poco porcentaje te puedes contagiar. Ten más cuidado la proxima vez");
                 }
                 else {
-                    mensaje.setText("Te has contagiado. Tienes que tener más cuidado si no quieres que te vuelva a pasar");
+                    message.setText("Te has contagiado. Tienes que tener más cuidado si no quieres que te vuelva a pasar");
                 }
                 //Por el contrario, si es mayor no se contagiará
             } else {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
-                if (porcentajeActual <= 30) {
-                    mensaje.setText("No te has contagiado aunque habian pocas posibilidades. Intentalo de nuevo para bajarlas.");
+                if (actualPercentage <= 30) {
+                    message.setText("No te has contagiado aunque habian pocas posibilidades. Intentalo de nuevo para bajarlas.");
                 }
                 else {
-                    mensaje.setText("Has tenido muchiiiisima suerte. Pero puede que algún día no la tengas y lo pilles. Ten cuidado.");
+                    message.setText("Has tenido muchiiiisima suerte. Pero puede que algún día no la tengas y lo pilles. Ten cuidado.");
                 }
             }
         }
@@ -78,14 +78,14 @@ public class PantallaFinal extends AppCompatActivity {
     //Al pulsar el boton de volver a jugar, el juego te lleva a la casa del jugador para iniciar de nuevo
     //el juego_autobus_fuera
     public void volverajugar(View view){
-        Intent volverSuper = new Intent (this, SUP_EscenarioCasa.class);
-        startActivity(volverSuper);
+        Intent goBackStore = new Intent (this, SUP_EscenarioCasa.class);
+        startActivity(goBackStore);
     }
 
     //Al pulsar el boton de menu, te lleva a la pantalla principal del juego
     public void menuprincipal(View view){
-        Intent menuprincipal = new Intent (this, MainActivity.class);
-        startActivity(menuprincipal);
+        Intent principalMenu = new Intent (this, MainActivity.class);
+        startActivity(principalMenu);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class PantallaFinal extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
-        Boolean valordelboton = sharedPreferences.getBoolean("value", false);
-        if (!valordelboton) {
+        Boolean buttonValue = sharedPreferences.getBoolean("value", false);
+        if (!buttonValue) {
             Intent i = new Intent(this, AudioService.class);
             i.putExtra("action", 3);
             startService(i);
