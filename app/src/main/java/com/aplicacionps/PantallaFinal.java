@@ -1,7 +1,5 @@
 package com.aplicacionps;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -10,15 +8,26 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.aplicacionps.AudioService;
+import com.aplicacionps.MainActivity;
+import com.aplicacionps.R;
+import com.aplicacionps.SUP_EscenarioCasa;
+
+import java.util.Random;
+
+
 public class PantallaFinal extends AppCompatActivity {
     //Se crea una variable para almacenar el porcentaje final obtenido y 2 textview para mostrar el
     //porcentaje y el Mensaje final
-    private int PorcentajeActual;
-    private TextView Mensaje;
-    private TextView Porciento;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int porcentajeActual;
+        TextView mensaje;
+        TextView porciento;
         super.onCreate(savedInstanceState);
         //Relacionamos la clase PantallaFinal.java con su XML activity_pantallafinal.xml
         setContentView(R.layout.activity_pantallafinal);
@@ -27,50 +36,41 @@ public class PantallaFinal extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Se obtiene el porcentaje de la actividad anterior
-        String Dato = getIntent().getStringExtra("dato");
-        String pantalla = getIntent().getStringExtra("volver");
-        PorcentajeActual = Integer.parseInt(Dato);
+        String dato = getIntent().getStringExtra("dato");
+        porcentajeActual = Integer.parseInt(dato);
         //Se relaciona el TextView "Porciento" con el del activity y muestra el porcentaje final obtenido
-        Porciento = (TextView) findViewById(R.id.porciento);
-        Porciento.setText("PORCENTAJE = " + Dato);
+        porciento = (TextView) findViewById(R.id.porciento);
+        porciento.setText("PORCENTAJE = " + dato);
         //Se relaciona el TextView "Mensaje" con el del activity
-        Mensaje = (TextView) findViewById(R.id.mensajeFinal);
+        mensaje = (TextView) findViewById(R.id.mensajeFinal);
         //Se obtiene un numero aleatorio que dependiendo del porcentaje final hará que aparezca un
         //Mensaje diferente cada vez
-        int numAleatorio = (int) (Math.random() * 100);
+        Random r = new Random();
+        int numAleatorio = r.nextInt(100);
 
         //Si el porcentaje final obtenido es 0 no se puede contagiar
-        if (PorcentajeActual == 0) {
-            Mensaje.setText("¡ENHORABUENA! No te has contagiado ya que tienes un 0 por ciento de probabilidades. Sigue así.");
-        //Si el porcentaje final es 100 o mas se contagiará si o si
-        }
-        else if (PorcentajeActual <= 100) {
-            Mensaje.setText("Te has contagiado. Ten más cuidado ya que puedes enfermar a los que más quieres.");
+        if (porcentajeActual == 0) {
+            mensaje.setText("¡ENHORABUENA! No te has contagiado ya que tienes un 0 por ciento de probabilidades. Sigue así.");
+            //Si el porcentaje final es 100 o mas se contagiará si o si
         }
         else {
             //Si el numero aleatorio obtenido es menor o igual que el porcentaje obtenido, se contagiará
-            if (numAleatorio <= PorcentajeActual) {
+            if (numAleatorio <= porcentajeActual) {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
-                if (PorcentajeActual <= 30) {
-                    Mensaje.setText("Mala suerte, te has contagiado. Incluso con poco porcentaje te puedes contagiar. Ten más cuidado la proxima vez");
-                }
-                else if ((PorcentajeActual <= 60) && (PorcentajeActual > 30)) {
-                    Mensaje.setText("Mala suerte, te ha contagiado. Ten más cuidado la proxima vez");
+                if (porcentajeActual <= 30) {
+                    mensaje.setText("Mala suerte, te has contagiado. Incluso con poco porcentaje te puedes contagiar. Ten más cuidado la proxima vez");
                 }
                 else {
-                    Mensaje.setText("Te has contagiado. Tienes que tener más cuidado si no quieres que te vuelva a pasar");
+                    mensaje.setText("Te has contagiado. Tienes que tener más cuidado si no quieres que te vuelva a pasar");
                 }
-            //Por el contrario, si es mayor no se contagiará
+                //Por el contrario, si es mayor no se contagiará
             } else {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
-                if (PorcentajeActual <= 30) {
-                    Mensaje.setText("No te has contagiado aunque habian pocas posibilidades. Intentalo de nuevo para bajarlas.");
-                }
-                else if ((PorcentajeActual <= 60) && (PorcentajeActual > 30)) {
-                    Mensaje.setText("Has tenido suerte y no te has contagiado. Puedes mejorar este resultado. Intentálo de nuevo");
+                if (porcentajeActual <= 30) {
+                    mensaje.setText("No te has contagiado aunque habian pocas posibilidades. Intentalo de nuevo para bajarlas.");
                 }
                 else {
-                    Mensaje.setText("Has tenido muchiiiisima suerte. Pero puede que algún día no la tengas y lo pilles. Ten cuidado.");
+                    mensaje.setText("Has tenido muchiiiisima suerte. Pero puede que algún día no la tengas y lo pilles. Ten cuidado.");
                 }
             }
         }
@@ -89,9 +89,9 @@ public class PantallaFinal extends AppCompatActivity {
         startActivity(menuprincipal);
     }
 
-    //Este método hace que no podamos retroceder de escenario en la historia jugable
     @Override
     public void onBackPressed() {
+        //Este método hace que no podamos retroceder de escenario en la historia jugable
 
     }
 
@@ -100,7 +100,7 @@ public class PantallaFinal extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         Intent i = new Intent(this, AudioService.class);
-        i.putExtra("action", AudioService.PAUSE);
+        i.putExtra("action", 4);
         startService(i);
     }
 
@@ -109,10 +109,11 @@ public class PantallaFinal extends AppCompatActivity {
         super.onResume();
         SharedPreferences sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
         Boolean valordelboton = sharedPreferences.getBoolean("value", false);
-        if (valordelboton != true) {
+        if (!valordelboton) {
             Intent i = new Intent(this, AudioService.class);
-            i.putExtra("action", AudioService.START);
+            i.putExtra("action", 3);
             startService(i);
         }
     }
+
 }
