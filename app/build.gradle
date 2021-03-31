@@ -34,7 +34,7 @@ sonarqube {
         property "sonar.projectKsoney", "calidad2_Calidad-equipo2"
         property "sonar.organization", "calidad2"
         property "sonar.host.url", "https://sonarcloud.io/"
-        property "sonar.login", "c22861ab4345c96455848211ff6ab3eab9be9e9d"
+        property "sonar.login", "59f601183fa59d23467635d91fb093f5048aef6c"
         property "sonar.branch.name", "release/0.1"
     }
 }
