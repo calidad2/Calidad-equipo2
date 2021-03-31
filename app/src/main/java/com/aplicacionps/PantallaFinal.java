@@ -47,21 +47,19 @@ public class PantallaFinal extends AppCompatActivity {
         //Mensaje diferente cada vez
         //Random r = new Random();
         //int numAleatorio = r.nextInt(100);
-        int numAleatorio = (int) (Math.random()*100);
+        int numAleatorio = (int) (Math.random() * 100);
 
         //Si el porcentaje final obtenido es 0 no se puede contagiar
         if (porcentajeActual == 0) {
             mensaje.setText("Congratulations! You haven't caught the virus yet because you have a 0 percent probability of catching it. Keep it up!");
             //Si el porcentaje final es 100 o mas se contagiará si o si
-        }
-        else {
+        } else {
             //Si el numero aleatorio obtenido es menor o igual que el porcentaje obtenido, se contagiará
             if (numAleatorio <= porcentajeActual) {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
                 if (porcentajeActual <= 30) {
                     mensaje.setText("Bad luck, you are infected. Even with a low percentage you can get infected. Be more carefull next time");
-                }
-                else {
+                } else {
                     mensaje.setText("You are infected. You have to be more carefull if you don't want it to happen again");
                 }
                 //Por el contrario, si es mayor no se contagiará
@@ -69,9 +67,9 @@ public class PantallaFinal extends AppCompatActivity {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
                 if (porcentajeActual <= 30) {
                     mensaje.setText("You are not infected even though the probabilities were low. Try again to lower them");
-                }
-                else {
+                } else {
                     mensaje.setText("You've been very lucky, but in the future you may not be so lucky. Be carefull! ");
+                }
             }
         }
     }
