@@ -45,9 +45,9 @@ public class PantallaFinal extends AppCompatActivity {
         mensaje = (TextView) findViewById(R.id.mensajeFinal);
         //Se obtiene un numero aleatorio que dependiendo del porcentaje final hará que aparezca un
         //Mensaje diferente cada vez
-        //Random r = new Random();
-        //int numAleatorio = r.nextInt(100);
-        int numAleatorio = (int) (Math.random()*100);
+        Random r = new Random();
+        int numAleatorio = r.nextInt(100);
+        //int numAleatorio = (int) (Math.random()*100);
 
         //Si el porcentaje final obtenido es 0 no se puede contagiar
         if (porcentajeActual == 0) {
