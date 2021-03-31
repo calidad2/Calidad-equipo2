@@ -51,7 +51,7 @@ public class PantallaFinal extends AppCompatActivity {
 
         //Si el porcentaje final obtenido es 0 no se puede contagiar
         if (porcentajeActual == 0) {
-            mensaje.setText("¡ENHORABUENA! No te has contagiado ya que tienes un 0 por ciento de probabilidades. Sigue así.");
+            mensaje.setText("Congratulations! You haven't caught the virus yet because you have a 0 percent probability of catching it. Keep it up!");
             //Si el porcentaje final es 100 o mas se contagiará si o si
         }
         else {
@@ -59,20 +59,19 @@ public class PantallaFinal extends AppCompatActivity {
             if (numAleatorio <= porcentajeActual) {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
                 if (porcentajeActual <= 30) {
-                    mensaje.setText("Mala suerte, te has contagiado. Incluso con poco porcentaje te puedes contagiar. Ten más cuidado la proxima vez");
+                    mensaje.setText("Bad luck, you are infected. Even with a low percentage you can get infected. Be more carefull next time");
                 }
                 else {
-                    mensaje.setText("Te has contagiado. Tienes que tener más cuidado si no quieres que te vuelva a pasar");
+                    mensaje.setText("You are infected. You have to be more carefull if you don't want it to happen again");
                 }
                 //Por el contrario, si es mayor no se contagiará
             } else {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
                 if (porcentajeActual <= 30) {
-                    mensaje.setText("No te has contagiado aunque habian pocas posibilidades. Intentalo de nuevo para bajarlas.");
+                    mensaje.setText("You are not infected even though the probabilities were low. Try again to lower them");
                 }
                 else {
-                    mensaje.setText("Has tenido muchiiiisima suerte. Pero puede que algún día no la tengas y lo pilles. Ten cuidado.");
-                }
+                    mensaje.setText("You've been very lucky, but in the future you may not be so lucky. Be carefull! ");
             }
         }
     }
