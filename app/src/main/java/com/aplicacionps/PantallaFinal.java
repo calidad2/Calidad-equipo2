@@ -16,6 +16,8 @@ import com.aplicacionps.R;
 import com.aplicacionps.SUP_EscenarioCasa;
 
 import java.util.Random;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class PantallaFinal extends AppCompatActivity {
@@ -115,13 +117,15 @@ public class PantallaFinal extends AppCompatActivity {
         }
     }
     public void vaccine(int PorcentajeActual){
-        int date=(int) new Date().getYear();
+        int year= Calendar.getInstance().get(Calendar.YEAR);
         if (PorcentajeActual==0 && PorcentajeActual<=30){
-            Mensaje.setText("Tu año estimada de vacunación es "+date+2);
+            year=year+2;
+            Mensaje.setText("Tu año estimada de vacunación es "+year);
         }else if (PorcentajeActual>30 && PorcentajeActual<=60){
-            Mensaje.setText("Tu año estimada de vacunación es "+date+1);
+            year=year+1;
+            Mensaje.setText("Tu año estimada de vacunación es "+year);
         }else{
-            Mensaje.setText("Tu año estimada de vacunación es "+date);
+            Mensaje.setText("Tu año estimada de vacunación es "+year);
         }
     }
 }
