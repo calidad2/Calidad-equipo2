@@ -1,35 +1,31 @@
 package com.aplicacionps;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.aplicacionps.AudioService;
-import com.aplicacionps.MainActivity;
-import com.aplicacionps.R;
-import com.aplicacionps.SUP_EscenarioCasa;
-
-import java.util.Random;
 import java.util.Calendar;
 import java.util.Date;
-
 
 public class PantallaFinal extends AppCompatActivity {
     //Se crea una variable para almacenar el porcentaje final obtenido y 2 textview para mostrar el
     //porcentaje y el Mensaje final
-
+    private int PorcentajeActual;
+    private TextView Mensaje;
+    private TextView Porciento;
+    private Button button;
+    private View.OnClickListener corkyListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int porcentajeActual;
-        TextView mensaje;
-        TextView porciento;
         super.onCreate(savedInstanceState);
         //Relacionamos la clase PantallaFinal.java con su XML activity_pantallafinal.xml
         setContentView(R.layout.activity_pantallafinal);
@@ -38,39 +34,50 @@ public class PantallaFinal extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Se obtiene el porcentaje de la actividad anterior
-        String dato = getIntent().getStringExtra("dato");
-        porcentajeActual = Integer.parseInt(dato);
+        String Dato = getIntent().getStringExtra("dato");
+        String pantalla = getIntent().getStringExtra("volver");
+        PorcentajeActual = Integer.parseInt(Dato);
         //Se relaciona el TextView "Porciento" con el del activity y muestra el porcentaje final obtenido
-        porciento = (TextView) findViewById(R.id.porciento);
-        porciento.setText("PORCENTAJE = " + dato);
+        Porciento = (TextView) findViewById(R.id.porciento);
+        Porciento.setText("PORCENTAJE = " + Dato);
         //Se relaciona el TextView "Mensaje" con el del activity
-        mensaje = (TextView) findViewById(R.id.mensajeFinal);
+        Mensaje = (TextView) findViewById(R.id.mensajeFinal);
         //Se obtiene un numero aleatorio que dependiendo del porcentaje final hará que aparezca un
         //Mensaje diferente cada vez
-        //Random r = new Random();
-        //int numAleatorio = r.nextInt(100);
         int numAleatorio = (int) (Math.random() * 100);
 
         //Si el porcentaje final obtenido es 0 no se puede contagiar
-        if (porcentajeActual == 0) {
-            mensaje.setText("Congratulations! You haven't caught the virus yet because you have a 0 percent probability of catching it. Keep it up!");
-            //Si el porcentaje final es 100 o mas se contagiará si o si
-        } else {
+        if (PorcentajeActual == 0) {
+            Mensaje.setText("¡ENHORABUENA! No te has contagiado ya que tienes un 0 por ciento de probabilidades. Sigue así.");
+        //Si el porcentaje final es 100 o mas se contagiará si o si
+        }
+        else if (PorcentajeActual <= 100) {
+            Mensaje.setText("Te has contagiado. Ten más cuidado ya que puedes enfermar a los que más quieres.");
+        }
+        else {
             //Si el numero aleatorio obtenido es menor o igual que el porcentaje obtenido, se contagiará
-            if (numAleatorio <= porcentajeActual) {
+            if (numAleatorio <= PorcentajeActual) {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
-                if (porcentajeActual <= 30) {
-                    mensaje.setText("Bad luck, you are infected. Even with a low percentage you can get infected. Be more carefull next time");
-                } else {
-                    mensaje.setText("You are infected. You have to be more carefull if you don't want it to happen again");
+                if (PorcentajeActual <= 30) {
+                    Mensaje.setText("Mala suerte, te has contagiado. Incluso con poco porcentaje te puedes contagiar. Ten más cuidado la proxima vez");
                 }
-                //Por el contrario, si es mayor no se contagiará
+                else if ((PorcentajeActual <= 60) && (PorcentajeActual > 30)) {
+                    Mensaje.setText("Mala suerte, te ha contagiado. Ten más cuidado la proxima vez");
+                }
+                else {
+                    Mensaje.setText("Te has contagiado. Tienes que tener más cuidado si no quieres que te vuelva a pasar");
+                }
+            //Por el contrario, si es mayor no se contagiará
             } else {
                 //Dependiendo del porcentaje que se haya obtenido al final aparecerá un Mensaje diferente cada vez
-                if (porcentajeActual <= 30) {
-                    mensaje.setText("You are not infected even though the probabilities were low. Try again to lower them");
-                } else {
-                    mensaje.setText("You've been very lucky, but in the future you may not be so lucky. Be carefull! ");
+                if (PorcentajeActual <= 30) {
+                    Mensaje.setText("No te has contagiado aunque habian pocas posibilidades. Intentalo de nuevo para bajarlas.");
+                }
+                else if ((PorcentajeActual <= 60) && (PorcentajeActual > 30)) {
+                    Mensaje.setText("Has tenido suerte y no te has contagiado. Puedes mejorar este resultado. Intentálo de nuevo");
+                }
+                else {
+                    Mensaje.setText("Has tenido muchiiiisima suerte. Pero puede que algún día no la tengas y lo pilles. Ten cuidado.");
                 }
             }
         }
@@ -90,9 +97,9 @@ public class PantallaFinal extends AppCompatActivity {
         startActivity(menuprincipal);
     }
 
+    //Este método hace que no podamos retroceder de escenario en la historia jugable
     @Override
     public void onBackPressed() {
-        //Este método hace que no podamos retroceder de escenario en la historia jugable
 
     }
 
@@ -101,7 +108,7 @@ public class PantallaFinal extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         Intent i = new Intent(this, AudioService.class);
-        i.putExtra("action", 4);
+        i.putExtra("action", AudioService.PAUSE);
         startService(i);
     }
 
@@ -110,22 +117,25 @@ public class PantallaFinal extends AppCompatActivity {
         super.onResume();
         SharedPreferences sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
         Boolean valordelboton = sharedPreferences.getBoolean("value", false);
-        if (!valordelboton) {
+        if (valordelboton != true) {
             Intent i = new Intent(this, AudioService.class);
-            i.putExtra("action", 3);
+            i.putExtra("action", AudioService.START);
             startService(i);
         }
     }
     public void vaccine(int PorcentajeActual){
         int year= Calendar.getInstance().get(Calendar.YEAR);
-        if (PorcentajeActual==0 && PorcentajeActual<=30){
+        if (PorcentajeActual>=0 && PorcentajeActual<=30){
             year=year+2;
-            Mensaje.setText("Tu año estimada de vacunación es "+year);
+            Mensaje.setText("Tu año estimado de vacunación es "+year);
+
         }else if (PorcentajeActual>30 && PorcentajeActual<=60){
             year=year+1;
-            Mensaje.setText("Tu año estimada de vacunación es "+year);
+            Mensaje.setText("Tu año estimado de vacunación es "+year);
         }else{
-            Mensaje.setText("Tu año estimada de vacunación es "+year);
+            Mensaje.setText("Tu año estimado de vacunación es "+year);
         }
     }
+
+
 }
