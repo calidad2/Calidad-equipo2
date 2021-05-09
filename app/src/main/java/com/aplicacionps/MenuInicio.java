@@ -1,6 +1,5 @@
 package com.aplicacionps;
 
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -13,10 +12,7 @@ import android.content.Intent;
 
 import androidx.navigation.Navigation;
 
-import android.widget.Button;
 import android.widget.ImageButton;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class MenuInicio extends Fragment {
 
@@ -43,7 +39,7 @@ public class MenuInicio extends Fragment {
         ImageButton btncomojugar = view.findViewById(R.id.btncomojugar);
         ImageButton btndesafios = view.findViewById(R.id.btndesafios);
         ImageButton btnajustes = view.findViewById(R.id.btnajustes);
-        ImageButton btnyoutube = view.findViewById(R.id.btnytutorial);
+        ImageButton btnyoutube = view.findViewById(R.id.botonyt);
         ImageButton idioma = view.findViewById(R.id.idioma_button);
         //ImageButton btnIdioma = view.findViewById(R.id.idioma_button);
         //Implementacion de boton que lleva de un fragmento a otro fragment

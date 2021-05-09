@@ -52,10 +52,9 @@
         app:srcCompat="@drawable/inicio_debotondesafios" />
 
     <ImageButton
-        android:id="@+id/btnytutorial"
+        android:id="@+id/botonyt"
         android:layout_width="488dp"
         android:layout_height="55dp"
-        android:contentDescription="@string/botonyt"
         android:padding="0px"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
