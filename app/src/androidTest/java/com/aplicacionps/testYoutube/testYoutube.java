@@ -2,9 +2,9 @@ package com.aplicacionps.testYoutube;
 
 
 import android.content.Context;
-import io.cucumber.junit.Cucumber;
 
-import org.junit.runner.RunWith;
+
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
@@ -23,7 +23,7 @@ import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 
-@RunWith(Cucumber.class)
+
 public class testYoutube extends junit.framework.TestCase {
 
     Context context;
