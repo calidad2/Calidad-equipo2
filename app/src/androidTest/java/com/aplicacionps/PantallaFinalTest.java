@@ -28,7 +28,7 @@ public class PantallaFinalTest extends junit.framework.TestCase {
         int PorcentajeActual = 0;
         int aux = year+2;
         String stringToCompare = fakeString + aux;
-        pantallaFinal.vaccine(PorcentajeActual)
+        pantallaFinal.vaccine(PorcentajeActual);
         onView(withText(stringToCompare)).check(matches(isDisplayed()));
         onView();
 
@@ -46,5 +46,4 @@ public class PantallaFinalTest extends junit.framework.TestCase {
 
 
 
-}
 }
