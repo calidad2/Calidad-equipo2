@@ -12,17 +12,17 @@ import org.junit.runner.RunWith;
 
 public class YoutubeTest {
     String message;
-    @Given("^que estoy en el menú principal$")
+    @Given("^que estoy en el menu principal$")
     public void que_estoy_en_el_men_principal() throws Throwable {
-        System.out.println("El usuario esta en el menu prinicpal");
+        System.out.println("El usuario esta en el menu principal");
     }
 
-    @When("^hago click sobre el botón de youtube$")
+    @When("^hago click sobre el boton de youtube$")
     public void hago_click_sobre_el_botn_de_youtube() throws Throwable {
         message = "Esto es una prueba";
     }
 
-    @Then("^soy redirigido al vídeo$")
+    @Then("^soy redirigido al video$")
     public void soy_redirigido_al_vdeo() throws Throwable {
         Assert.assertEquals("Esto es una prueba",message);
     }

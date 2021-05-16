@@ -11,7 +11,7 @@ public class idiomaTest {
     String message;
     @Given("^que estoy en la pantalla de ajustes$")
     public void que_estoy_en_la_pantalla_de_ajustes() throws Throwable {
-        System.out.println("El usuario esta en el menu prinicpal");
+        System.out.println("El usuario esta en el menu principal");
     }
 
     @When("^hago click sobre el botón de idioma$")
@@ -19,7 +19,7 @@ public class idiomaTest {
         message = "Esto es una prueba";
     }
 
-    @Then("^la bandera del botón se actualiza $")
+    @Then("^la bandera del botón se actualiza$")
     public void la_bandera_del_botn_se_actualiza() throws Throwable {
         Assert.assertEquals("Esto es una prueba",message);
     }
