@@ -9,7 +9,7 @@ import cucumber.api.java.en.When;
 
 public class idiomaTest {
     String message;
-    @Given("^que estoy en la pantalla del menú principal$")
+    @Given("^que estoy en la pantalla de menú principal$")
     public void que_estoy_en_la_pantalla_del_menu_principal() throws Throwable {
         System.out.println("El usuario esta en el menu principal");
     }

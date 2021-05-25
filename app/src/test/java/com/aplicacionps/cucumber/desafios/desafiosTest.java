@@ -8,8 +8,8 @@ import cucumber.api.java.en.When;
 
 public class desafiosTest {
     String message;
-    @Given("^que estoy en la pantalla del menú principal$")
-    public void que_estoy_en_la_pantalla_del_men_principal() throws Throwable {
+    @Given("^en la pantalla de menú principal$")
+    public void en_la_pantalla_de_men_principal() throws Throwable {
         System.out.println("El usuario esta en el menu principal");
     }
 
