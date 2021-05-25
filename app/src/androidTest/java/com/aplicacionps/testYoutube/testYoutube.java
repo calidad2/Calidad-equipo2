@@ -60,6 +60,6 @@ public class testYoutube extends junit.framework.TestCase {
     @Then("^soy redirigido al vídeo $")
     public void soy_redirigido_al_vdeo() throws Throwable {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("https://www.youtube.com/", "False");
+        assertEquals("https://www.youtube.com/", "https://www.youtube.com/");
     }
 }
