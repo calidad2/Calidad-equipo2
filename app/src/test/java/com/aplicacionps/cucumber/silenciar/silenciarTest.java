@@ -14,12 +14,12 @@ public class silenciarTest {
     }
 
     @When("^hago click sobre el botón de silenciar$")
-    public void hago_click_sobre_el_botn_de_idioma() throws Throwable {
+    public void hago_click_sobre_el_botn_de_silenciar() throws Throwable {
         message = "Esto es una prueba";
     }
 
     @Then("^el audio de la aplicación se silencia$")
-    public void la_bandera_del_botn_se_actualiza() throws Throwable {
+    public void el_audio_de_la_aplicacin_se_silencia() throws Throwable {
         Assert.assertEquals("Esto es una prueba",message);
     }
 }
