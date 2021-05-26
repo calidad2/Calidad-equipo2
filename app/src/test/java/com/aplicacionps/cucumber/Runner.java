@@ -9,11 +9,11 @@ import cucumber.api.junit.Cucumber;
         features = {
                 "src/test/java/com/aplicacionps/cucumber/Youtube/Youtube.feature",
                 "src/test/java/com/aplicacionps/cucumber/idioma/idioma.feature",
-                "src/test/java/com/aplicacionps/cucumber/jugar/jugar.feature",
-                "src/test/java/com/aplicacionps/cucumber/seleccionarEscenario/seleccionarEscenario.feature",
+                "src/test/java/com/aplicacionps/cucumber/Jugar/jugar.feature",
                 "src/test/java/com/aplicacionps/cucumber/silenciar/silenciar.feature",
                 "src/test/java/com/aplicacionps/cucumber/comoJugar/comoJugar.feature",
-                "src/test/java/com/aplicacionps/cucumber/desafios/desafios.feature"
+                "src/test/java/com/aplicacionps/cucumber/desafios/desafios.feature",
+                "src/test/java/com/aplicacionps/cucumber/Ajustes/Ajustes.feature"
 
         },
         glue = "com.aplicacionps.cucumber"
